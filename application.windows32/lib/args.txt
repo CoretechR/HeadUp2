@@ -1,0 +1,3 @@
+
+HeadUp2
+HeadUp2.jar,core.jar,jogl-all.jar,gluegen-rt.jar,jogl-all-natives-windows-i586.jar,gluegen-rt-natives-windows-i586.jar,opencv-245.jar,opencv_processing.jar,gstreamer-java.jar,jna.jar,video.jar
