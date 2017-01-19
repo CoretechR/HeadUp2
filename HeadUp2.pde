@@ -22,8 +22,8 @@ void setup() {
   size(320, 240);
   mind = this.loadImage("mind.png");
   //The next lines are for intitializing the camera and OpenCV
-  video = new Capture(this, 160, 120);
-  opencv = new OpenCV(this, 160, 120);
+  video = new Capture(this, 640, 480);
+  opencv = new OpenCV(this, 640, 480);
   opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
   video.start();
   
@@ -88,7 +88,7 @@ void draw() {
 void getDistance(int interval) { //OPenCV functions
   //pushmatrix and popmatrix prevents the buttons from beeing scaled with the video
   pushMatrix(); 
-  scale(2); // scales the video to the window size
+  scale(0.5); // scales the video to the window size
   opencv.loadImage(video);
   
   image(video, 0, 0 ); // this draws the webcam image
@@ -96,7 +96,7 @@ void getDistance(int interval) { //OPenCV functions
   noFill();
   if (alm) stroke(255, 0, 0); //draw all lines red if alarm is active
   else stroke(0, 255, 0);
-  strokeWeight(2);
+  strokeWeight(4);
   Rectangle[] faces = opencv.detect();
   int dist = 0;
   for (int i = 0; i < faces.length; i++) {
@@ -110,7 +110,7 @@ void getDistance(int interval) { //OPenCV functions
     rect(faces[i].x-delta/2, faces[i].y-delta/2, faces[i].width+delta, trigDist);
   }
   //This draws a line at the limit height:
-  if (trigHeight!=0) line(0, trigHeight, width, trigHeight);
+  if (trigHeight!=0) line(0, trigHeight, width*2, trigHeight);
   popMatrix();
 }
 
@@ -145,9 +145,9 @@ public void loadsettings(String paramString){ // load settings from file
 }
   
 public void savesettings(String paramString){ // save settings to file
-  list[0] = str(this.trigHeight);
-  list[1] = str(this.trigDist);
-  saveStrings(dataPath(paramString), this.list);
+  list[0] = str(trigHeight);
+  list[1] = str(trigDist);
+  saveStrings(dataPath(paramString), list);
 }
 
 public class secondApplet extends PApplet{ //draw popup window
